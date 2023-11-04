@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import WordsForm from 'components/WordsForm/WordsForm';
 import WordsList from 'components/WordsList/WordsList';
-import WordsFilter from './WordsFilter/WordsFilter';
+import { WordsFilter } from './WordsFilter/WordsFilter';
 export class App extends Component {
   state = {
     words: [],
@@ -26,6 +26,24 @@ export class App extends Component {
     }));
   };
 
+  handleFilterChange = event => {
+    this.setState({
+      filter: event.target.value,
+    });
+  };
+
+  handlerFilter = () => {
+    let searchWords = [];
+    if (this.state.filter) {
+      searchWords = this.state.words.filter(word =>
+        word.enWord.toLowerCase().includes(this.state.filter.toLowerCase())
+      );
+    } else {
+      searchWords = this.state.words;
+    }
+    return searchWords;
+  };
+
   render() {
     return (
       <div>
@@ -33,9 +51,13 @@ export class App extends Component {
           handleAddWord={this.handleAddWord}
           increaseNumber={this.increaseNumber}
         />
-        <WordsFilter />
+        <WordsFilter
+          filter={this.state.filter}
+          handleFilterChange={this.handleFilterChange}
+        />
         <WordsList
-          words={this.state.words}
+          // words={this.state.words}
+          words={this.handlerFilter()}
           handleDelete={this.handleDelete}
           number={this.state.number}
         />
