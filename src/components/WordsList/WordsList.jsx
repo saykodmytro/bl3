@@ -8,22 +8,28 @@ export default function WordsList({ words, number, handleDelete }) {
     <div>
       <div className={css.tableContainer}>
         <table>
-          <th>All</th>
-          <th>NUMBER</th>
-          <th>EN WORD</th>
-          <th>UK WORD</th>
-          <th>ACTIONS</th>
-          <th>ACTIONS </th>
-          {words.map((word, index) => {
-            return (
-              <WordsListItem
-                key={word.id}
-                word={word}
-                number={number + index}
-                handleDelete={() => handleDelete(word.id)}
-              />
-            );
-          })}
+          <thead>
+            <tr>
+              <th>All</th>
+              <th>NUMBER</th>
+              <th>EN WORD</th>
+              <th>UK WORD</th>
+              <th>ACTIONS</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {words.map((word, index) => {
+              return (
+                <WordsListItem
+                  key={word.id}
+                  word={word}
+                  number={number + index + 1}
+                  handleDelete={() => handleDelete(word.id)}
+                />
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </div>
