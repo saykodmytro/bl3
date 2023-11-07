@@ -2,7 +2,7 @@ import WordsListItem from 'components/WordsListItem/WordsListItem';
 import React from 'react';
 import css from './WordsList.module.css';
 
-export default function WordsList({ words, number, handleDelete }) {
+export default function WordsList({ words, handleDelete }) {
   // const newHandleDelete = id => () => handleDelete(id);
   return (
     <div>
@@ -24,7 +24,7 @@ export default function WordsList({ words, number, handleDelete }) {
                 <WordsListItem
                   key={word.id}
                   word={word}
-                  number={number + index + 1}
+                  numberOfItem={index + 1}
                   handleDelete={() => handleDelete(word.id)}
                 />
               );
